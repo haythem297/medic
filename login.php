@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Authenticate user by querying the database
     $query = "SELECT * FROM doctors WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($db, $query);
 

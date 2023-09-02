@@ -1,12 +1,12 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
 require_once('db.php');
 
-// Check if the user is logged in, if not, redirect to the login page
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.html");
-    exit; // Ensure the script stops executing after the redirect
+    exit; 
 }
 ?>
 
@@ -30,11 +30,12 @@ if (!isset($_SESSION['username'])) {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Display patients here using PHP -->
+                
                 <?php
                 require_once('db.php');
                 $query = "SELECT * FROM patients";
@@ -45,6 +46,7 @@ if (!isset($_SESSION['username'])) {
                     echo "<td>" . $row['name'] . "</td>";
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['phone_number'] . "</td>";
+                    echo "<td>" . $row['rdv'] . "</td>";
                     echo "<td>";
                     ?><button type="button" class="btn btn-warning"><?php echo "<a class='texts' href='update.php?id=" . $row['id'] . "'>Update</a> "; ?></button>
                     <button type="button" class="btn btn-danger"><?php echo "<a class='texts' href='delete.php?id=" . $row['id'] . "'>Delete</a>"; ?></button><?php
@@ -57,10 +59,9 @@ if (!isset($_SESSION['username'])) {
     </div>
     <button class="btn btn-primary" id="myBtn">Add Patient</button>
 
-<!-- The Modal -->
+
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
 <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
@@ -75,6 +76,8 @@ if (!isset($_SESSION['username'])) {
             <input class="form-control" type="email" id="email" name="email" required><br><br>
             <label for="phone">Phone Number:</label>
             <input class="form-control" type="text" id="phone" name="phone" required><br><br>
+            <label for="phone">Date:</label>
+            <input class="form-control" type="date" id="rdv" name="rdv" required><br><br>
             <input class="btn btn-primary" type="submit" value="Add Patient">
         </form>
     </div>
@@ -83,11 +86,10 @@ if (!isset($_SESSION['username'])) {
   </div>
 
 </div>
-<script src="scripte.js"></script> <!-- Include JavaScript file -->
-<!-- Add Bootstrap CSS -->
+<script src="scripte.js"></script> 
+
 <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 
-<!-- Add Bootstrap JavaScript and Popper.js (required for certain Bootstrap components) -->
 <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
 <script src="path/to/popper.js/popper.min.js"></script>
 </body>
